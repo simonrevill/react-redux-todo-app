@@ -4,8 +4,10 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
-import './index.css';
-import App from './App';
+import './css/libraries/bootstrap.4.4.1.min.css';
+import './css/libraries/fontawesome.5.13.0.all.min.css';
+import './css/index.css';
+import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
