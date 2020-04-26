@@ -1,11 +1,15 @@
 import React from 'react'
 
+import Todo from './Todo';
+
 function TodoList() {
   return (
     <React.Fragment>
       <div class="row">
         <div class="col-12">
-          <ul class="list-group mt-4 js-todo-list"></ul>
+          <ul class="list-group mt-4 js-todo-list">
+            <Todo />
+          </ul>
         </div>
       </div>
       <div class="row">

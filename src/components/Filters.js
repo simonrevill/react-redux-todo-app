@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Filters() {
+const Filters = () => {
   return (
     <React.Fragment>
       <hr class="mt-3" />
