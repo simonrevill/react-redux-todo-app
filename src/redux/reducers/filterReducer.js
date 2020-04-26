@@ -3,9 +3,7 @@ import { FILTER_EVENTS } from '../constants/constants.js';
 const { FILTER_ALL, FILTER_INCOMPLETE, FILTER_COMPLETED, ALL, INCOMPLETE, COMPLETED } = FILTER_EVENTS;
 
 const initialState = {
-  filterReducer: {
-    activeFilter: ALL
-  }
+  activeFilter: ALL
 };
 
 const filterReducer = (state = initialState, action) => {
@@ -14,25 +12,19 @@ const filterReducer = (state = initialState, action) => {
     case FILTER_ALL:
 
       return {
-        filterReducer: {
-          activeFilter: ALL
-        }
+        activeFilter: ALL
       };
 
     case FILTER_INCOMPLETE:
 
       return {
-        filterReducer: {
-          activeFilter: INCOMPLETE
-        }
+        activeFilter: INCOMPLETE
       };
 
     case FILTER_COMPLETED:
 
       return {
-        filterReducer: {
-          activeFilter: COMPLETED
-        }
+        activeFilter: COMPLETED
       };
 
     default:

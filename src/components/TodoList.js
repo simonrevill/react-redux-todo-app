@@ -1,25 +1,31 @@
 import React from 'react'
 
 import Todo from './Todo';
+import { connect } from 'react-redux';
 
-function TodoList() {
+const TodoList = props => {
+
+  const todos = props.todos.map(todo => <Todo id={todo.id} todoText={todo.text} completed={todo.completed} />);
+
   return (
     <React.Fragment>
-      <div class="row">
-        <div class="col-12">
-          <ul class="list-group mt-4 js-todo-list">
-            <Todo />
+      <div className="row">
+        <div className="col-12">
+          <ul className="list-group mt-4 js-todo-list">
+            {todos}
           </ul>
         </div>
       </div>
-      <div class="row">
-        <div class="col-12">
-          <button class="btn btn-primary mt-4 w-50 js-clear-btn d-none" type="button">Clear Todos</button>
+      <div className="row">
+        <div className="col-12">
+          <button className="btn btn-primary mt-4 w-50 js-clear-btn d-none" type="button">Clear Todos</button>
         </div>
       </div>
-      <hr class="mt-3" />
+      <hr className="mt-3" />
     </React.Fragment>
   );
 };
 
-export default TodoList;
+const mapStateToProps = state => state.todoReducer ? state.todoReducer : {};
+
+export default connect(mapStateToProps, null)(TodoList);
