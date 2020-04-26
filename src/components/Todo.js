@@ -16,4 +16,6 @@ const Todo = ({ id, todoText, completed }) => {
   );
 };
 
+// DISPATCH ACTIONS HERE:
+
 export default Todo;
