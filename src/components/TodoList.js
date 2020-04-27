@@ -5,9 +5,25 @@ import clearTodos from '../redux/actions/clearTodos';
 
 const TodoList = stateProps => {
 
-  const todos = stateProps.todos.map(todo => (
+  const activeFilter = stateProps.filterReducer.activeFilter;
+
+  const todos = stateProps.todoReducer.todos.map(todo => (
     <Todo key={todo.id} id={todo.id} todoText={todo.text} completed={todo.completed} />
   ));
+
+  const incompleteTodos = todos.filter(todo => !todo.props.completed);
+
+  const completedTodos = todos.filter(todo => todo.props.completed);
+
+  const renderTodos = filter => {
+    if (filter === 'All') {
+      return todos;
+    } else if (filter === 'Incomplete') {
+      return incompleteTodos;
+    } else if (filter === 'Completed') {
+      return completedTodos;
+    }
+  };
 
   const handleClearTodos = () => stateProps.clearTodos();
 
@@ -16,7 +32,7 @@ const TodoList = stateProps => {
       <div className="row">
         <div className="col-12">
           <ul className="list-group mt-4 js-todo-list">
-            {todos}
+            {renderTodos(activeFilter)}
           </ul>
         </div>
       </div>
@@ -30,6 +46,9 @@ const TodoList = stateProps => {
   );
 };
 
-const mapStateToProps = state => state.todoReducer ? state.todoReducer : {};
+const mapStateToProps = state => {
+  const { todoReducer, filterReducer } = state;
+  return { todoReducer, filterReducer } || {};
+}
 
 export default connect(mapStateToProps, { clearTodos })(TodoList);
