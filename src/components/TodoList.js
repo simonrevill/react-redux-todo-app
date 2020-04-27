@@ -3,9 +3,11 @@ import React from 'react'
 import Todo from './Todo';
 import { connect } from 'react-redux';
 
-const TodoList = props => {
+const TodoList = stateProps => {
 
-  const todos = props.todos.map(todo => <Todo id={todo.id} todoText={todo.text} completed={todo.completed} />);
+  const todos = stateProps.todos.map(todo => (
+    <Todo key={todo.id} id={todo.id} todoText={todo.text} completed={todo.completed} />
+  ));
 
   return (
     <React.Fragment>
@@ -18,6 +20,7 @@ const TodoList = props => {
       </div>
       <div className="row">
         <div className="col-12">
+          {/* conditional className d-none - todos.length.... */}
           <button className="btn btn-primary mt-4 w-50 js-clear-btn d-none" type="button">Clear Todos</button>
         </div>
       </div>
