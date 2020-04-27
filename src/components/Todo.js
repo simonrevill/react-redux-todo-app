@@ -1,7 +1,5 @@
 import React from 'react'
-
 import { connect } from 'react-redux';
-
 import toggleTodo from '../redux/actions/toggleTodo';
 import deleteTodo from '../redux/actions/deleteTodo';
 
