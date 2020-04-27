@@ -10,6 +10,7 @@ const Input = props => {
   const handleInputChange = e => setInput(e.target.value);
 
   const handleSubmitTodo = () => {
+    if (!input.length) return;
     props.addTodo(uuidv4(), input);
     setInput('');
   };
