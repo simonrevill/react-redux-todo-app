@@ -1,6 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
+import toggleFilter from '../redux/actions/toggleFilter';
 
-const Filters = () => {
+const Filters = stateProps => {
+
+  const handleToggle = e => {
+    const filterEvent = e.target.dataset.filter_event;
+    const filter = e.target.dataset.filter;
+    stateProps.toggleFilter(filterEvent, filter);
+  };
+
+  const activeFilter = stateProps.activeFilter;
+
   return (
     <React.Fragment>
       <hr className="mt-3" />
@@ -13,9 +24,26 @@ const Filters = () => {
         <div className="row">
           <div className="col-12">
             <div className="btn-group w-100 js-filter-group">
-              <button className="js-filter-btn btn btn-primary" type="button" data-filter="All">All</button>
-              <button className="js-filter-btn btn btn-outline-primary" type="button" data-filter="Incomplete">Incomplete</button>
-              <button className="js-filter-btn btn btn-outline-primary" type="button" data-filter="Completed">Completed</button>
+              <button
+                className={"btn" + (activeFilter === 'All' ? ' btn-primary' : ' btn-outline-primary')}
+                type="button"
+                data-filter_event="FILTER_ALL"
+                data-filter="All"
+                onClick={handleToggle}
+              >All</button>
+              <button
+                className={"btn" + (activeFilter === 'Incomplete' ? ' btn-primary' : ' btn-outline-primary')}
+                type="button"
+                data-filter_event="FILTER_INCOMPLETE"
+                data-filter="Incomplete"
+                onClick={handleToggle}
+              >Incomplete</button>
+              <button className={"btn" + (activeFilter === 'Completed' ? ' btn-primary' : ' btn-outline-primary')}
+                type="button"
+                data-filter_event="FILTER_COMPLETED"
+                data-filter="Completed"
+                onClick={handleToggle}
+              >Completed</button>
             </div>
           </div>
         </div>
@@ -24,4 +52,6 @@ const Filters = () => {
   );
 };
 
-export default Filters;
+const mapStateToProps = state => state.filterReducer ? state.filterReducer : {};
+
+export default connect(mapStateToProps, { toggleFilter })(Filters);
